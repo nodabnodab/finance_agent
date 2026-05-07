@@ -32,7 +32,13 @@ def search_news(query: str) -> str:
     try:
         tavily_key = os.getenv("TAVILY_API_KEY")
         client = TavilyClient(api_key=tavily_key)
-        response = client.search(query=query, search_depth="basic", max_results=3)
+        # 일반 웹 검색이 아닌 '뉴스(news)' 전용으로 검색하고 최근 3일(days=3)로 제한합니다.
+        response = client.search(
+            query=query, 
+            topic="news", 
+            days=3, 
+            max_results=3
+        )
         
         results = []
         for res in response.get('results', []):
@@ -65,7 +71,7 @@ agent_executor = create_react_agent(llm, tools)
 def chat_with_agent(user_message: str):
     print(f"\n🗣️ 사용자 질문: {user_message}")
     print("-" * 50)
-    print("🤖 에이전트가 도구를 사용해 정보를 찾고 고민하는 중...\n")
+    print("🤖 에이전트가 생각 중입니다...\n")
     
     # 에이전트에게 시스템 프롬프트와 사용자 메시지를 함께 전달
     response = agent_executor.invoke({
@@ -75,11 +81,28 @@ def chat_with_agent(user_message: str):
         ]
     })
     
+    # 디버깅을 위해 에이전트의 중간 과정(도구 사용)을 출력합니다.
+    for msg in response["messages"]:
+        if msg.type == "ai" and getattr(msg, "tool_calls", None):
+            for tc in msg.tool_calls:
+                print(f"🔧 [에이전트 결정] 도구 실행: {tc['name']} (검색어: {tc['args']})")
+        elif msg.type == "tool":
+            # 결과가 너무 길면 잘라서 보여줍니다.
+            content_preview = msg.content[:150].replace('\n', ' ') + "..." if len(msg.content) > 150 else msg.content.replace('\n', ' ')
+            print(f"📥 [도구 결과] {msg.name}: {content_preview}")
+    
+    print("\n" + "=" * 50)
     # 에이전트의 최종 답변 출력
     print("✅ 에이전트의 최종 답변:")
-    print(response["messages"][-1].content)
+    raw_answer = response["messages"][-1].content
+    if isinstance(raw_answer, list):
+        # 구글 API 특성상 리스트로 반환될 경우 텍스트 부분만 추출
+        final_answer = "".join([part.get("text", "") for part in raw_answer if isinstance(part, dict) and "text" in part])
+    else:
+        final_answer = str(raw_answer)
+    print(final_answer)
     print("=" * 50)
 
 if __name__ == "__main__":
     # 간단한 테스트 질문
-    chat_with_agent("애플(AAPL) 최신 주가 알려주고, 관련된 최신 뉴스도 요약해 줘.")
+    chat_with_agent("인텔(INTC) 최신 주가 알려주고, 관련된 최신 뉴스도 요약해 줘.")

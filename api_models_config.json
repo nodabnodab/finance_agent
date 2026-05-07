@@ -1,0 +1,87 @@
+{
+  "instructions": "이 파일은 AI 금융 에이전트가 사용하는 사용 가능한 LLM 모델과 검색 API의 중앙 저장소(Memory Map)입니다. 연동 오류가 발생하거나 멀티 LLM(OpenAI, Anthropic 등)을 추가/전환할 때 이 정보를 읽어 에이전트를 유연하게 수정할 수 있습니다.",
+  "active_providers": {
+    "primary": "google",
+    "fallback": "openai"
+  },
+  "providers": {
+    "google": {
+      "provider_name": "Google Generative AI",
+      "api_key_env_var": "GEMINI_API_KEY",
+      "class_path": "langchain_google_genai.ChatGoogleGenerativeAI",
+      "default_model": "gemini-2.5-flash",
+      "available_models": [
+        "gemini-2.5-flash",
+        "gemini-2.5-pro",
+        "gemini-2.0-flash",
+        "gemini-2.0-flash-001",
+        "gemini-2.0-flash-lite-001",
+        "gemini-2.0-flash-lite",
+        "gemini-2.5-flash-preview-tts",
+        "gemini-2.5-pro-preview-tts",
+        "gemma-4-26b-a4b-it",
+        "gemma-4-31b-it",
+        "gemini-flash-latest",
+        "gemini-flash-lite-latest",
+        "gemini-pro-latest",
+        "gemini-2.5-flash-lite",
+        "gemini-2.5-flash-image",
+        "gemini-3-pro-preview",
+        "gemini-3-flash-preview",
+        "gemini-3.1-pro-preview",
+        "gemini-3.1-pro-preview-customtools",
+        "gemini-3.1-flash-lite-preview",
+        "gemini-3-pro-image-preview",
+        "nano-banana-pro-preview",
+        "gemini-3.1-flash-image-preview",
+        "lyria-3-clip-preview",
+        "lyria-3-pro-preview",
+        "gemini-3.1-flash-tts-preview",
+        "gemini-robotics-er-1.5-preview",
+        "gemini-robotics-er-1.6-preview",
+        "gemini-2.5-computer-use-preview-10-2025",
+        "deep-research-max-preview-04-2026",
+        "deep-research-preview-04-2026",
+        "deep-research-pro-preview-12-2025"
+      ],
+      "notes": "현재 우리가 주력으로 사용 중인 가장 빠르고 넉넉한 쿼타의 무료/유료 하이브리드 모델군입니다."
+    },
+    "openai": {
+      "provider_name": "OpenAI",
+      "api_key_env_var": "OPENAI_API_KEY",
+      "class_path": "langchain_openai.ChatOpenAI",
+      "default_model": "gpt-4o-mini",
+      "available_models": [
+        "gpt-4o",
+        "gpt-4o-mini",
+        "gpt-4-turbo",
+        "gpt-3.5-turbo"
+      ],
+      "notes": "향후 연동할 OpenAI 모델 목록입니다. .env 파일에 OPENAI_API_KEY만 등록하면 즉시 전환할 수 있도록 지원합니다."
+    },
+    "anthropic": {
+      "provider_name": "Anthropic Claude",
+      "api_key_env_var": "ANTHROPIC_API_KEY",
+      "class_path": "langchain_anthropic.ChatAnthropic",
+      "default_model": "claude-3-5-sonnet-latest",
+      "available_models": [
+        "claude-3-5-sonnet-latest",
+        "claude-3-5-haiku-latest",
+        "claude-3-opus-20240229"
+      ],
+      "notes": "추론 성능이 아주 강력한 클로드(Claude) 모델 목록입니다."
+    }
+  },
+  "search_apis": {
+    "tavily": {
+      "provider_name": "Tavily Search API",
+      "api_key_env_var": "TAVILY_API_KEY",
+      "default_topic": "news",
+      "topics": [
+        "news",
+        "general"
+      ],
+      "notes": "실시간 금융 시장 상황 검색과 과거 뉴스 필터링을 주력으로 담당하는 검색 전용 API 엔진입니다."
+    }
+  }
+}

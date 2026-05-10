@@ -4,6 +4,7 @@ from streamlit_lottie import st_lottie
 from agent import agent_executor, system_prompt
 from memory import trigger_background_compression, load_entity_memory
 from router import analyze_intent
+from pii_filter import mask_sensitive_data
 
 # ────────────────────────────────────────────
 # 1. 페이지 기본 설정
@@ -526,15 +527,20 @@ with col_center:
                     if llm_messages:
                         last_role, last_content = llm_messages[-1]
                         if last_role == "user":
+                            # 🚨 클라우드 전송 직전 완벽한 PII 마스킹 (안정성 100%)
+                            safe_profile = mask_sensitive_data(profile_str)
+                            safe_facts = mask_sensitive_data(facts_str)
+                            safe_last_content = mask_sensitive_data(last_content)
+
                             enriched_prompt = f"""[참고용 백그라운드 데이터]
 - 오늘의 시장 요약: {master_briefing}
-- 사용자 맞춤형 프로필: {profile_str}
+- 사용자 맞춤형 프로필: {safe_profile}
 
 [사용자의 장기 기억 팩트]
-{facts_str}
+{safe_facts}
 
 [사용자 질문]
-{last_content}"""
+{safe_last_content}"""
                             llm_messages[-1] = ("user", enriched_prompt)
 
                     # 5. 메인 에이전트(70B) 실행

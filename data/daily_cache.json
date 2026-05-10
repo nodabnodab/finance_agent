@@ -1,411 +1,413 @@
 {
-  "fetched_at": "2026-05-07T20:09:53.201250+09:00",
+  "fetched_at": "2026-05-08T05:43:01.815311+09:00",
   "nasdaq100": [
     {
-      "ticker": "SMCI",
-      "close": 34.66,
-      "change_pct": 24.54,
-      "week_change_pct": 26.5
-    },
-    {
-      "ticker": "AMD",
-      "close": 421.39,
-      "change_pct": 18.61,
-      "week_change_pct": 18.87
-    },
-    {
-      "ticker": "BIDU",
-      "close": 140.59,
-      "change_pct": 11.37,
-      "week_change_pct": 11.11
-    },
-    {
-      "ticker": "LRCX",
-      "close": 297.17,
-      "change_pct": 7.75,
-      "week_change_pct": 15.24
-    },
-    {
-      "ticker": "ASML",
-      "close": 1544.74,
-      "change_pct": 7.06,
-      "week_change_pct": 7.35
-    },
-    {
-      "ticker": "NVDA",
-      "close": 207.83,
-      "change_pct": 5.77,
-      "week_change_pct": 4.14
-    },
-    {
-      "ticker": "PDD",
-      "close": 102.31,
-      "change_pct": 5.75,
-      "week_change_pct": 2.43
-    },
-    {
-      "ticker": "KLAC",
-      "close": 1816.29,
-      "change_pct": 4.81,
-      "week_change_pct": 3.77
-    },
-    {
-      "ticker": "INTC",
-      "close": 113.01,
-      "change_pct": 4.49,
-      "week_change_pct": 19.61
-    },
-    {
-      "ticker": "AMAT",
-      "close": 428.62,
-      "change_pct": 4.33,
-      "week_change_pct": 8.65
-    },
-    {
-      "ticker": "MU",
-      "close": 666.59,
-      "change_pct": 4.12,
-      "week_change_pct": 28.89
-    },
-    {
-      "ticker": "JD",
-      "close": 30.69,
-      "change_pct": 3.4,
-      "week_change_pct": 1.22
-    },
-    {
-      "ticker": "QCOM",
-      "close": 192.57,
-      "change_pct": 3.23,
-      "week_change_pct": 7.23
-    },
-    {
-      "ticker": "IDXX",
-      "close": 579.23,
-      "change_pct": 2.89,
-      "week_change_pct": 3.29
-    },
-    {
-      "ticker": "GOOG",
-      "close": 395.14,
-      "change_pct": 2.83,
-      "week_change_pct": 3.46
-    },
-    {
-      "ticker": "EBAY",
-      "close": 108.15,
-      "change_pct": 2.75,
-      "week_change_pct": 4.51
-    },
-    {
-      "ticker": "ADI",
-      "close": 415.63,
-      "change_pct": 2.68,
-      "week_change_pct": 3.32
-    },
-    {
-      "ticker": "REGN",
-      "close": 721.05,
-      "change_pct": 2.67,
-      "week_change_pct": 1.98
-    },
-    {
-      "ticker": "ILMN",
-      "close": 142.58,
-      "change_pct": 2.52,
-      "week_change_pct": 12.5
-    },
-    {
-      "ticker": "GOOGL",
-      "close": 398.04,
-      "change_pct": 2.47,
-      "week_change_pct": 3.44
-    },
-    {
-      "ticker": "TSLA",
-      "close": 398.73,
-      "change_pct": 2.4,
-      "week_change_pct": 4.48
-    },
-    {
-      "ticker": "ODFL",
-      "close": 200.62,
-      "change_pct": 2.32,
-      "week_change_pct": -5.56
-    },
-    {
-      "ticker": "MRVL",
-      "close": 172.15,
-      "change_pct": 2.01,
-      "week_change_pct": 4.24
-    },
-    {
-      "ticker": "MNST",
-      "close": 77.2,
-      "change_pct": 1.85,
-      "week_change_pct": 0.17
-    },
-    {
-      "ticker": "DXCM",
-      "close": 60.36,
-      "change_pct": 1.48,
-      "week_change_pct": 1.36
-    },
-    {
-      "ticker": "META",
-      "close": 612.88,
-      "change_pct": 1.31,
-      "week_change_pct": 0.16
-    },
-    {
-      "ticker": "MELI",
-      "close": 1841.14,
-      "change_pct": 1.31,
-      "week_change_pct": 2.71
-    },
-    {
-      "ticker": "AAPL",
-      "close": 287.51,
-      "change_pct": 1.17,
-      "week_change_pct": 5.96
-    },
-    {
-      "ticker": "GEHC",
-      "close": 61.74,
-      "change_pct": 1.14,
-      "week_change_pct": 1.47
-    },
-    {
-      "ticker": "PTON",
-      "close": 5.2,
-      "change_pct": 0.78,
-      "week_change_pct": -4.59
-    },
-    {
-      "ticker": "CEG",
-      "close": 322.78,
-      "change_pct": 0.74,
-      "week_change_pct": 3.12
-    },
-    {
-      "ticker": "ROST",
-      "close": 228.91,
-      "change_pct": 0.66,
-      "week_change_pct": 0.49
-    },
-    {
-      "ticker": "MSFT",
-      "close": 413.96,
-      "change_pct": 0.63,
-      "week_change_pct": 1.52
-    },
-    {
-      "ticker": "PEP",
-      "close": 155.96,
-      "change_pct": 0.59,
-      "week_change_pct": -1.6
-    },
-    {
-      "ticker": "AMZN",
-      "close": 274.99,
-      "change_pct": 0.53,
-      "week_change_pct": 3.75
-    },
-    {
-      "ticker": "AMGN",
-      "close": 331.11,
-      "change_pct": 0.46,
-      "week_change_pct": -4.37
-    },
-    {
-      "ticker": "NFLX",
-      "close": 88.27,
-      "change_pct": 0.43,
-      "week_change_pct": -5.7
-    },
-    {
-      "ticker": "SNPS",
-      "close": 504.42,
-      "change_pct": 0.38,
-      "week_change_pct": 4.52
-    },
-    {
-      "ticker": "CDNS",
-      "close": 354.9,
-      "change_pct": 0.36,
-      "week_change_pct": 7.68
-    },
-    {
-      "ticker": "ABNB",
-      "close": 139.88,
-      "change_pct": 0.11,
-      "week_change_pct": -0.34
-    },
-    {
-      "ticker": "ISRG",
-      "close": 451.73,
-      "change_pct": 0.08,
-      "week_change_pct": -1.28
-    },
-    {
-      "ticker": "CTAS",
-      "close": 169.36,
-      "change_pct": 0.06,
-      "week_change_pct": -3.06
+      "ticker": "DDOG",
+      "close": 188.73,
+      "change_pct": 31.33,
+      "week_change_pct": 34.3
     },
     {
       "ticker": "FTNT",
-      "close": 89.95,
-      "change_pct": 0.03,
-      "week_change_pct": 6.69
-    },
-    {
-      "ticker": "WBD",
-      "close": 27.2,
-      "change_pct": -0.07,
-      "week_change_pct": 0.55
-    },
-    {
-      "ticker": "PANW",
-      "close": 183.68,
-      "change_pct": -0.16,
-      "week_change_pct": 2.43
-    },
-    {
-      "ticker": "ORLY",
-      "close": 94.78,
-      "change_pct": -0.23,
-      "week_change_pct": -4.65
-    },
-    {
-      "ticker": "AVGO",
-      "close": 425.44,
-      "change_pct": -0.45,
-      "week_change_pct": 1.92
-    },
-    {
-      "ticker": "PYPL",
-      "close": 46.27,
-      "change_pct": -0.47,
-      "week_change_pct": -7.72
-    },
-    {
-      "ticker": "TMUS",
-      "close": 193.16,
-      "change_pct": -0.59,
-      "week_change_pct": -1.2
-    },
-    {
-      "ticker": "RIVN",
-      "close": 14.48,
-      "change_pct": -0.82,
-      "week_change_pct": -11.71
-    },
-    {
-      "ticker": "LCID",
-      "close": 6.19,
-      "change_pct": -0.96,
-      "week_change_pct": -2.83
-    },
-    {
-      "ticker": "CTSH",
-      "close": 51.33,
-      "change_pct": -1.04,
-      "week_change_pct": -2.97
-    },
-    {
-      "ticker": "KDP",
-      "close": 28.56,
-      "change_pct": -1.24,
-      "week_change_pct": -2.86
-    },
-    {
-      "ticker": "DDOG",
-      "close": 143.71,
-      "change_pct": -1.39,
-      "week_change_pct": 8.71
-    },
-    {
-      "ticker": "PAYX",
-      "close": 91.38,
-      "change_pct": -1.58,
-      "week_change_pct": -1.35
-    },
-    {
-      "ticker": "ADP",
-      "close": 207.2,
-      "change_pct": -1.61,
-      "week_change_pct": -2.24
-    },
-    {
-      "ticker": "CRWD",
-      "close": 468.07,
-      "change_pct": -1.78,
-      "week_change_pct": 5.01
+      "close": 107.97,
+      "change_pct": 20.03,
+      "week_change_pct": 25.12
     },
     {
       "ticker": "ZS",
-      "close": 138.83,
-      "change_pct": -1.79,
-      "week_change_pct": 6.24
+      "close": 152.79,
+      "change_pct": 10.06,
+      "week_change_pct": 9.28
     },
     {
-      "ticker": "COST",
-      "close": 995.75,
-      "change_pct": -2.03,
-      "week_change_pct": -1.71
+      "ticker": "PTON",
+      "close": 5.66,
+      "change_pct": 8.85,
+      "week_change_pct": 5.6
     },
     {
-      "ticker": "ADBE",
-      "close": 250.17,
-      "change_pct": -2.13,
-      "week_change_pct": 1.65
+      "ticker": "CRWD",
+      "close": 505.72,
+      "change_pct": 8.04,
+      "week_change_pct": 10.99
     },
     {
-      "ticker": "TTD",
-      "close": 24.01,
-      "change_pct": -2.44,
-      "week_change_pct": 1.78
+      "ticker": "PANW",
+      "close": 196.53,
+      "change_pct": 7.0,
+      "week_change_pct": 8.53
+    },
+    {
+      "ticker": "QCOM",
+      "close": 202.55,
+      "change_pct": 5.18,
+      "week_change_pct": 14.43
     },
     {
       "ticker": "INTU",
-      "close": 388.55,
-      "change_pct": -2.45,
-      "week_change_pct": 0.01
-    },
-    {
-      "ticker": "CSCO",
-      "close": 91.64,
-      "change_pct": -2.82,
-      "week_change_pct": 0.15
-    },
-    {
-      "ticker": "ZM",
-      "close": 105.13,
-      "change_pct": -3.64,
-      "week_change_pct": 8.21
-    },
-    {
-      "ticker": "DOCU",
-      "close": 46.53,
-      "change_pct": -3.82,
-      "week_change_pct": 1.17
+      "close": 406.78,
+      "change_pct": 4.69,
+      "week_change_pct": 1.94
     },
     {
       "ticker": "TEAM",
-      "close": 88.8,
-      "change_pct": -3.84,
-      "week_change_pct": 29.46
+      "close": 92.37,
+      "change_pct": 4.02,
+      "week_change_pct": 3.93
+    },
+    {
+      "ticker": "DOCU",
+      "close": 48.19,
+      "change_pct": 3.57,
+      "week_change_pct": 0.48
+    },
+    {
+      "ticker": "ADP",
+      "close": 214.09,
+      "change_pct": 3.33,
+      "week_change_pct": -0.06
+    },
+    {
+      "ticker": "TSLA",
+      "close": 411.79,
+      "change_pct": 3.28,
+      "week_change_pct": 5.37
+    },
+    {
+      "ticker": "PAYX",
+      "close": 94.26,
+      "change_pct": 3.15,
+      "week_change_pct": 1.33
+    },
+    {
+      "ticker": "ZM",
+      "close": 108.36,
+      "change_pct": 3.07,
+      "week_change_pct": 4.76
+    },
+    {
+      "ticker": "ADBE",
+      "close": 256.51,
+      "change_pct": 2.53,
+      "week_change_pct": 2.31
     },
     {
       "ticker": "VRSK",
-      "close": 170.94,
-      "change_pct": -5.27,
-      "week_change_pct": -7.34
+      "close": 174.69,
+      "change_pct": 2.19,
+      "week_change_pct": -3.54
+    },
+    {
+      "ticker": "NVDA",
+      "close": 211.5,
+      "change_pct": 1.77,
+      "week_change_pct": 6.58
+    },
+    {
+      "ticker": "MSFT",
+      "close": 420.77,
+      "change_pct": 1.65,
+      "week_change_pct": 1.53
+    },
+    {
+      "ticker": "COST",
+      "close": 1012.06,
+      "change_pct": 1.64,
+      "week_change_pct": 0.04
+    },
+    {
+      "ticker": "MELI",
+      "close": 1870.01,
+      "change_pct": 1.57,
+      "week_change_pct": 1.08
+    },
+    {
+      "ticker": "CTSH",
+      "close": 51.94,
+      "change_pct": 1.19,
+      "week_change_pct": -0.93
+    },
+    {
+      "ticker": "DXCM",
+      "close": 60.91,
+      "change_pct": 0.91,
+      "week_change_pct": -0.72
+    },
+    {
+      "ticker": "META",
+      "close": 616.81,
+      "change_pct": 0.64,
+      "week_change_pct": 1.32
+    },
+    {
+      "ticker": "CSCO",
+      "close": 92.16,
+      "change_pct": 0.57,
+      "week_change_pct": 0.34
+    },
+    {
+      "ticker": "CDNS",
+      "close": 356.9,
+      "change_pct": 0.56,
+      "week_change_pct": 4.68
+    },
+    {
+      "ticker": "TMUS",
+      "close": 194.2,
+      "change_pct": 0.54,
+      "week_change_pct": -0.95
+    },
+    {
+      "ticker": "ABNB",
+      "close": 140.46,
+      "change_pct": 0.41,
+      "week_change_pct": -0.85
+    },
+    {
+      "ticker": "CTAS",
+      "close": 170.04,
+      "change_pct": 0.4,
+      "week_change_pct": 0.25
+    },
+    {
+      "ticker": "ISRG",
+      "close": 453.49,
+      "change_pct": 0.39,
+      "week_change_pct": -0.94
+    },
+    {
+      "ticker": "PEP",
+      "close": 156.29,
+      "change_pct": 0.21,
+      "week_change_pct": -0.71
+    },
+    {
+      "ticker": "SNPS",
+      "close": 505.19,
+      "change_pct": 0.15,
+      "week_change_pct": 3.31
+    },
+    {
+      "ticker": "GOOG",
+      "close": 395.3,
+      "change_pct": 0.04,
+      "week_change_pct": 3.15
+    },
+    {
+      "ticker": "GOOGL",
+      "close": 397.99,
+      "change_pct": -0.01,
+      "week_change_pct": 3.19
+    },
+    {
+      "ticker": "AAPL",
+      "close": 287.44,
+      "change_pct": -0.02,
+      "week_change_pct": 2.61
+    },
+    {
+      "ticker": "NFLX",
+      "close": 88.25,
+      "change_pct": -0.02,
+      "week_change_pct": -4.14
+    },
+    {
+      "ticker": "PYPL",
+      "close": 46.22,
+      "change_pct": -0.11,
+      "week_change_pct": -8.37
+    },
+    {
+      "ticker": "KDP",
+      "close": 28.52,
+      "change_pct": -0.14,
+      "week_change_pct": -1.96
+    },
+    {
+      "ticker": "ORLY",
+      "close": 94.58,
+      "change_pct": -0.21,
+      "week_change_pct": -2.16
+    },
+    {
+      "ticker": "WBD",
+      "close": 27.12,
+      "change_pct": -0.29,
+      "week_change_pct": 0.56
+    },
+    {
+      "ticker": "BIDU",
+      "close": 139.87,
+      "change_pct": -0.51,
+      "week_change_pct": 11.11
+    },
+    {
+      "ticker": "AMGN",
+      "close": 329.09,
+      "change_pct": -0.61,
+      "week_change_pct": -0.22
+    },
+    {
+      "ticker": "GEHC",
+      "close": 61.34,
+      "change_pct": -0.64,
+      "week_change_pct": 0.51
     },
     {
       "ticker": "FAST",
-      "error": "데이터 없음"
+      "close": 44.36,
+      "change_pct": -0.78,
+      "week_change_pct": -1.22
+    },
+    {
+      "ticker": "PDD",
+      "close": 101.51,
+      "change_pct": -0.78,
+      "week_change_pct": 1.8
+    },
+    {
+      "ticker": "IDXX",
+      "close": 572.2,
+      "change_pct": -1.21,
+      "week_change_pct": 0.84
+    },
+    {
+      "ticker": "ODFL",
+      "close": 198.06,
+      "change_pct": -1.28,
+      "week_change_pct": -3.77
+    },
+    {
+      "ticker": "AMZN",
+      "close": 271.17,
+      "change_pct": -1.39,
+      "week_change_pct": 1.08
+    },
+    {
+      "ticker": "JD",
+      "close": 30.21,
+      "change_pct": -1.56,
+      "week_change_pct": 0.83
+    },
+    {
+      "ticker": "MNST",
+      "close": 75.97,
+      "change_pct": -1.59,
+      "week_change_pct": -1.49
+    },
+    {
+      "ticker": "EBAY",
+      "close": 106.42,
+      "change_pct": -1.6,
+      "week_change_pct": 2.26
+    },
+    {
+      "ticker": "REGN",
+      "close": 709.1,
+      "change_pct": -1.66,
+      "week_change_pct": 1.09
+    },
+    {
+      "ticker": "ADI",
+      "close": 408.52,
+      "change_pct": -1.71,
+      "week_change_pct": 2.72
+    },
+    {
+      "ticker": "ASML",
+      "close": 1516.6,
+      "change_pct": -1.82,
+      "week_change_pct": 6.28
+    },
+    {
+      "ticker": "ROST",
+      "close": 224.48,
+      "change_pct": -1.94,
+      "week_change_pct": -1.91
+    },
+    {
+      "ticker": "RIVN",
+      "close": 14.18,
+      "change_pct": -2.07,
+      "week_change_pct": -5.59
+    },
+    {
+      "ticker": "TTD",
+      "close": 23.49,
+      "change_pct": -2.17,
+      "week_change_pct": -3.09
+    },
+    {
+      "ticker": "LCID",
+      "close": 6.05,
+      "change_pct": -2.26,
+      "week_change_pct": -7.49
+    },
+    {
+      "ticker": "ILMN",
+      "close": 138.71,
+      "change_pct": -2.71,
+      "week_change_pct": 2.16
+    },
+    {
+      "ticker": "KLAC",
+      "close": 1763.25,
+      "change_pct": -2.92,
+      "week_change_pct": 2.14
+    },
+    {
+      "ticker": "MU",
+      "close": 646.63,
+      "change_pct": -2.99,
+      "week_change_pct": 19.26
+    },
+    {
+      "ticker": "INTC",
+      "close": 109.62,
+      "change_pct": -3.0,
+      "week_change_pct": 10.04
+    },
+    {
+      "ticker": "SMCI",
+      "close": 33.62,
+      "change_pct": -3.0,
+      "week_change_pct": 24.1
+    },
+    {
+      "ticker": "AVGO",
+      "close": 412.56,
+      "change_pct": -3.03,
+      "week_change_pct": -2.07
+    },
+    {
+      "ticker": "AMD",
+      "close": 408.46,
+      "change_pct": -3.07,
+      "week_change_pct": 13.29
+    },
+    {
+      "ticker": "CEG",
+      "close": 311.28,
+      "change_pct": -3.56,
+      "week_change_pct": 1.13
+    },
+    {
+      "ticker": "LRCX",
+      "close": 286.52,
+      "change_pct": -3.58,
+      "week_change_pct": 11.61
+    },
+    {
+      "ticker": "AMAT",
+      "close": 410.64,
+      "change_pct": -4.19,
+      "week_change_pct": 5.54
+    },
+    {
+      "ticker": "MRVL",
+      "close": 160.01,
+      "change_pct": -7.05,
+      "week_change_pct": -2.99
     },
     {
       "ticker": "SGEN",
@@ -418,190 +420,190 @@
   ],
   "sp500_weekly_top": [
     {
-      "ticker": "ORCL",
-      "close": 194.03,
-      "change_pct": 4.68,
-      "week_change_pct": 20.22
-    },
-    {
-      "ticker": "INTC",
-      "close": 113.01,
-      "change_pct": 4.49,
-      "week_change_pct": 19.61
+      "ticker": "QCOM",
+      "close": 202.55,
+      "change_pct": 5.18,
+      "week_change_pct": 14.43
     },
     {
       "ticker": "AMD",
-      "close": 421.39,
-      "change_pct": 18.61,
-      "week_change_pct": 18.87
+      "close": 408.46,
+      "change_pct": -3.07,
+      "week_change_pct": 13.29
     },
     {
-      "ticker": "QCOM",
-      "close": 192.57,
-      "change_pct": 3.23,
-      "week_change_pct": 7.23
+      "ticker": "ORCL",
+      "close": 194.59,
+      "change_pct": 0.29,
+      "week_change_pct": 13.25
     },
     {
-      "ticker": "AAPL",
-      "close": 287.51,
-      "change_pct": 1.17,
-      "week_change_pct": 5.96
-    },
-    {
-      "ticker": "LLY",
-      "close": 987.05,
-      "change_pct": -0.18,
-      "week_change_pct": 5.61
-    },
-    {
-      "ticker": "GE",
-      "close": 305.83,
-      "change_pct": 6.68,
-      "week_change_pct": 5.48
-    },
-    {
-      "ticker": "TSLA",
-      "close": 398.73,
-      "change_pct": 2.4,
-      "week_change_pct": 4.48
-    },
-    {
-      "ticker": "DIS",
-      "close": 108.06,
-      "change_pct": 7.54,
-      "week_change_pct": 4.15
+      "ticker": "INTC",
+      "close": 109.62,
+      "change_pct": -3.0,
+      "week_change_pct": 10.04
     },
     {
       "ticker": "NVDA",
-      "close": 207.83,
-      "change_pct": 5.77,
-      "week_change_pct": 4.14
+      "close": 211.5,
+      "change_pct": 1.77,
+      "week_change_pct": 6.58
+    },
+    {
+      "ticker": "GE",
+      "close": 302.63,
+      "change_pct": -1.05,
+      "week_change_pct": 5.63
+    },
+    {
+      "ticker": "DIS",
+      "close": 108.66,
+      "change_pct": 0.56,
+      "week_change_pct": 5.41
+    },
+    {
+      "ticker": "TSLA",
+      "close": 411.79,
+      "change_pct": 3.28,
+      "week_change_pct": 5.37
+    },
+    {
+      "ticker": "GOOGL",
+      "close": 397.99,
+      "change_pct": -0.01,
+      "week_change_pct": 3.19
+    },
+    {
+      "ticker": "AAPL",
+      "close": 287.44,
+      "change_pct": -0.02,
+      "week_change_pct": 2.61
     }
   ],
   "major_indices": {
     "S&P500": {
       "ticker": "^GSPC",
-      "close": 7365.12,
-      "change_pct": 1.46,
-      "week_change_pct": 2.17
+      "close": 7337.11,
+      "change_pct": -0.38,
+      "week_change_pct": 1.48
     },
     "나스닥": {
       "ticker": "^IXIC",
-      "close": 25838.94,
-      "change_pct": 2.02,
-      "week_change_pct": 3.8
+      "close": 25806.2,
+      "change_pct": -0.13,
+      "week_change_pct": 2.75
     },
     "다우존스": {
       "ticker": "^DJI",
-      "close": 49910.59,
-      "change_pct": 1.24,
-      "week_change_pct": 0.52
+      "close": 49596.97,
+      "change_pct": -0.63,
+      "week_change_pct": 0.2
     },
     "VIX(공포지수)": {
       "ticker": "^VIX",
-      "close": 17.49,
-      "change_pct": 0.58,
-      "week_change_pct": 2.94
+      "close": 17.08,
+      "change_pct": -1.78,
+      "week_change_pct": 0.53
     },
     "미국채10년금리": {
       "ticker": "^TNX",
-      "close": 4.36,
-      "change_pct": -1.36,
-      "week_change_pct": -0.77
+      "close": 4.39,
+      "change_pct": 0.83,
+      "week_change_pct": 0.32
     },
     "달러인덱스": {
       "ticker": "DX-Y.NYB",
-      "close": 97.89,
-      "change_pct": -0.13,
-      "week_change_pct": -0.59
+      "close": 98.19,
+      "change_pct": 0.17,
+      "week_change_pct": -0.28
     },
     "금": {
       "ticker": "GC=F",
-      "close": 4745.7,
-      "change_pct": 1.36,
-      "week_change_pct": 5.0
+      "close": 4724.7,
+      "change_pct": 0.91,
+      "week_change_pct": 4.54
     },
     "유가(WTI)": {
       "ticker": "CL=F",
-      "close": 92.81,
-      "change_pct": -2.39,
-      "week_change_pct": -12.79
+      "close": 95.99,
+      "change_pct": 0.96,
+      "week_change_pct": -9.8
     }
   },
   "sector_etfs": {
     "기술(XLK)": {
       "ticker": "XLK",
-      "close": 170.03,
-      "change_pct": 2.66,
-      "week_change_pct": 6.6
+      "close": 169.69,
+      "change_pct": -0.2,
+      "week_change_pct": 4.83
     },
     "헬스케어(XLV)": {
       "ticker": "XLV",
-      "close": 145.4,
-      "change_pct": 0.07,
-      "week_change_pct": -0.4
+      "close": 144.72,
+      "change_pct": -0.47,
+      "week_change_pct": -0.3
     },
     "금융(XLF)": {
       "ticker": "XLF",
-      "close": 51.84,
-      "change_pct": 0.48,
-      "week_change_pct": -0.56
+      "close": 51.55,
+      "change_pct": -0.56,
+      "week_change_pct": -0.71
     },
     "에너지(XLE)": {
       "ticker": "XLE",
-      "close": 57.0,
-      "change_pct": -4.12,
-      "week_change_pct": -4.44
+      "close": 55.95,
+      "change_pct": -1.84,
+      "week_change_pct": -4.93
     },
     "소비재(XLY)": {
       "ticker": "XLY",
-      "close": 119.87,
-      "change_pct": 1.52,
-      "week_change_pct": 1.28
+      "close": 119.88,
+      "change_pct": 0.01,
+      "week_change_pct": 1.05
     },
     "필수소비(XLP)": {
       "ticker": "XLP",
-      "close": 84.24,
-      "change_pct": 0.21,
-      "week_change_pct": -0.08
+      "close": 83.98,
+      "change_pct": -0.31,
+      "week_change_pct": -0.23
     },
     "산업재(XLI)": {
       "ticker": "XLI",
-      "close": 176.87,
-      "change_pct": 2.59,
-      "week_change_pct": 1.31
+      "close": 174.0,
+      "change_pct": -1.62,
+      "week_change_pct": 0.6
     },
     "반도체(SOXX)": {
       "ticker": "SOXX",
-      "close": 506.87,
-      "change_pct": 5.0,
-      "week_change_pct": 9.85
+      "close": 492.36,
+      "change_pct": -2.86,
+      "week_change_pct": 5.71
     },
     "AI테마(BOTZ)": {
       "ticker": "BOTZ",
-      "close": 39.88,
-      "change_pct": 2.92,
-      "week_change_pct": 3.72
+      "close": 39.83,
+      "change_pct": -0.13,
+      "week_change_pct": 3.19
     },
     "청정에너지(ICLN)": {
       "ticker": "ICLN",
-      "close": 21.32,
-      "change_pct": 0.14,
-      "week_change_pct": 2.65
+      "close": 20.71,
+      "change_pct": -2.86,
+      "week_change_pct": -1.15
     }
   },
   "fear_greed": {
     "description": "CNN Fear & Greed Index (뉴스 기반 요약)",
     "news": [
       {
-        "title": "Stock Market Today: Dow Jumps, Oil Prices Plunge On U.S.-Iran Deal Hopes; AMD Surges - Investor's Business Daily",
-        "url": "https://www.investors.com/market-trend/stock-market-today/dow-jones-sp500-nasdaq-us-iran-deal-amd-stock/",
-        "content": "# Stock Market Today: Nasdaq Leads Charge On U.S.-Iran Deal Hopes; Berkshire Hathaway Holding Soars (Live Coverage). The major indexes continued to advance in late-morning trade Wednesday, as hopes of a U.S.-Iran peace deal buoyed investor sentiment. Meanwhile, **Advanced Micro Devices** (AMD) was a"
+        "title": "Stock market today: Dow, S&P 500, Nasdaq futures tread water in wait for Iran-US deal update - Yahoo Finance",
+        "url": "https://finance.yahoo.com/markets/stocks/live/stock-market-today-dow-sp-500-nasdaq-futures-tread-water-in-wait-for-iran-us-deal-update-231446298.html",
+        "content": "# Stock market today: Dow, S&P 500, Nasdaq futures tread water in wait for Iran-US deal update. US stocks stalled before the bell on Thursday, holding near all-time highs as investors watched for Iran’s response to a US peace proposal and braced for a fresh flood of earnings reports. Contracts on th"
       },
       {
-        "title": "Market rebound: Why some stocks are looking past the Iran war - CNN",
-        "url": "https://www.cnn.com/2026/05/07/investing/global-stocks-iran-war",
-        "content": "The US stock market isn’t the only market that’s rebounded to record highs. Stock indexes in Taiwan, South Korea and Japan have clinched fresh records in recent trading sessions, bouncing back after tumbling in March. Asian countries are heavily reliant on oil imports from the Middle East that have "
+        "title": "Morning Call Sheet: Earnings strength offsets war and inflation fears - CNBC",
+        "url": "https://www.cnbc.com/video/2026/05/07/morning-call-sheet-earnings-strength-offsets-war-and-inflation-fears.html",
+        "content": "# Morning Call Sheet: Earnings strength offsets war and inflation fears. Steve Grasso, CEO of Grasso Global, Barbara Doran, Chief Investment Officer at BD8 Capital Partners, and Ed Mills, Washington Policy Analyst at Raymond James, say strong earnings and stable labor markets are supporting stocks d"
       }
     ]
   },
@@ -612,9 +614,9 @@
       "content": "# Global debt hits record of near $353 trillion, with signs of move away from US | Reuters. Exclusive news, data and analytics for financial market professionals Learn more about Refinitiv. ## Browse World. ## Browse Business. ## Browse Markets. # Global debt hits record of near $353 trillion, with "
     },
     {
-      "title": "Here's what to watch from the markets this week - CNBC",
-      "url": "https://www.cnbc.com/video/2026/05/04/heres-what-to-watch-from-the-markets-this-week.html",
-      "content": "# Here's what to watch from the markets this week. Jay Woods, chief market strategist at Freedom Capital Markets, breaks down what he's watching in the week ahead, including April jobs report, earnings season, and more. Watch CNBC's full interview with Western Digital CEO Irving Tan. Watch CNBC's fu"
+      "title": "Morning Bid: No stopping AI frenzy in Asia - Reuters",
+      "url": "https://www.reuters.com/world/asia-pacific/global-markets-view-europe-2026-05-07/",
+      "content": "# Morning Bid: No stopping AI frenzy in Asia | Reuters. Exclusive news, data and analytics for financial market professionals Learn more about Refinitiv. ## Browse World. ## Browse Business. ## Browse Markets. Japan's Nikkei returned from holiday and jumped onto the scorching AI rally, joining South"
     },
     {
       "title": "Stock Market Today, May 5: Stocks Rebound as U.S.-Iran Truce Holds - The Motley Fool",
@@ -622,9 +624,9 @@
       "content": "# Stock Market Today, May 5: Stocks Rebound as U.S.-Iran Truce Holds. Today, May 5, 2026, Micron’s jump on high-capacity SSD demand helped power a broader chip-led advance in U.S. stocks. The **S&P 500** (^GSPC +1.18%) rose 0.81% to 7,259.22, the **Nasdaq Composite** (^IXIC +1.50%) gained 1.03% to 2"
     },
     {
-      "title": "Stock market today: Dow jumps 600 points, S&P 500 and Nasdaq hit records as AI trade fuels rally - Yahoo Finance",
-      "url": "https://finance.yahoo.com/markets/stocks/live/stock-market-today-dow-jumps-600-points-sp-500-and-nasdaq-hit-records-as-ai-trade-fuels-rally-231128214.html",
-      "content": "# Stock market today: Dow jumps 600 points, S&P 500 and Nasdaq hit records as AI trade fuels rally. Wall Street stocks climbed to fresh records on Wednesday as investors weighed reports that the US and Iran may be closing in on a peace deal, while solid earnings from tech companies fueled the artifi"
+      "title": "Stock Market Today: Dow Rises Amid U.S.-Iran Tensions; Palantir Slides After Earnings Report (Live Coverage) - Investor's Business Daily",
+      "url": "https://www.investors.com/market-trend/stock-market-today/dow-jones-sp500-nasdaq-us-iran-tensions-palantir-stock-pltr/",
+      "content": "# Stock Market Today: Dow Rises Amid U.S.-Iran Tensions; Palantir Slides After Earnings Report (Live Coverage). Futures for the Dow Jones Industrial Average and other major stock indexes traded higher Tuesday amid rising U.S.-Iran tensions. Meanwhile, **Palantir Technologies** (PLTR) was an early lo"
     },
     {
       "title": "Fed rate hike is back on the table as markets fear sticky inflation - Business Insider",
@@ -632,9 +634,9 @@
       "content": "# Markets are suddenly eyeing the possibility that the Fed could hike interest rates in the next year. * Markets think a Fed rate hike might be in the cards in the next 12 months. * It's a bearish about-face from upbeat outlooks earlier this year, with analysts eyeing more cuts from the Fed. The mar"
     },
     {
-      "title": "Federal Reserve's New Inflation Data is 'Useless,' Says Otavio Costa: Inside Fed's Pivot To Excuse Lower Rates - InsuranceNewsNet",
-      "url": "https://insurancenewsnet.com/oarticle/federal-reserves-new-inflation-data-is-useless-says-otavio-costa-inside-feds-pivot-to-excuse-lower-rates",
-      "content": "# Federal Reserve&apos;s New Inflation Data is &apos;Useless,&apos; Says Otavio Costa: Inside Fed&apos;s Pivot To Excuse Lower Rates - Insurance News | InsuranceNewsNet. HomeNow reading INN Insider News. INN Insider News RSSGet our newsletter. 9 minutes ago INN Insider News. # Federal Reserve's New "
+      "title": "All eyes on job market as Fed's rate-cut window narrows - KITCO",
+      "url": "https://www.kitco.com/news/off-the-wire/2026-05-05/all-eyes-job-market-feds-rate-cut-window-narrows",
+      "content": "May 5 (Reuters) - The release of the U.S. employment report later this week will serve as a test of whether the economy remains resilient enough to keep the Federal Reserve's monetary policy on hold, or whether a softening labor market could revive the case for interest ​rate cuts that the war with "
     },
     {
       "title": "Stock Market Today: Dow, S&P 500 and Nasdaq called higher as oil dips from highs; Palantir slips after results; AMD earnings on tap. - MarketWatch",
@@ -642,12 +644,17 @@
       "content": "# Stock Market Today: Dow, S&P 500 and Nasdaq called higher as oil dips from highs; Palantir slips after results; AMD earnings on tap. ## Follow all the latest U.S. market action for Tuesday here to see if stocks can shrug off the latest upsurge in Iran war concerns and recapture record highs. May 5"
     },
     {
-      "title": "Stock Market Today: Dow, S&P 500 and Nasdaq set to retreat as Iran says it hit U.S. warship; Berkshire Hathaway, GameStop in view - MarketWatch",
-      "url": "https://www.marketwatch.com/livecoverage/stock-market-today-dow-set-to-ease-while-s-p-500-and-nasdaq-eye-new-records",
-      "content": "# Stock Market Today: Dow, S&P 500 and Nasdaq set to retreat as Iran says it hit U.S. warship; Berkshire Hathaway, GameStop in view. ## Follow along to the action in markets on Monday after the S&P 500 and Nasdaq Composite closed last week at record levels. May 4, 2026 at 7:41 AM ET. GameStop is hun"
+      "title": "Market Open: May 6, 2026 - CNBC",
+      "url": "https://www.cnbc.com/video/2026/05/06/market-open-may-6-2026.html",
+      "content": "# News Update – Market Open. CNBC brings you fast, accurate, and actionable business news and market updates. AMD CEO Lisa Su: Agents are driving tremendous demand in the AI cycle. Private payrolls rose by 109,000 in April, topping expectations, ADP says. Uber CEO Dara Khosrowshahi on Q1 results: We"
     }
   ],
   "earnings_calendar": [
+    {
+      "title": "These stocks reporting earnings next week have a history of beating expectations - CNBC",
+      "url": "https://www.cnbc.com/2026/05/07/these-stocks-reporting-earnings-next-week-have-a-history-of-beating-expectations.html",
+      "content": "# These stocks reporting earnings next week have a history of beating expectations. Companies such as Copa Holdings and Nova reporting earnings next week have a track record of beating Wall Street's expectations. After the frenzy of the past two weeks, earnings season will take a breath in the next "
+    },
     {
       "title": "Why Supernus Pharmaceuticals (SUPN) Stock Is Up Today - The Chronicle-Journal",
       "url": "http://markets.chroniclejournal.com/chroniclejournal/article/stockstory-2026-5-7-why-supernus-pharmaceuticals-supn-stock-is-up-today",
@@ -667,43 +674,47 @@
       "title": "Agnico Eagle Mines Limited $AEM Shares Sold by Capital Management Corp VA - MarketBeat",
       "url": "https://www.marketbeat.com/instant-alerts/filing-agnico-eagle-mines-limited-aem-shares-sold-by-capital-management-corp-va-2026-05-03/",
       "content": "The Real SpaceX Play: 5 Chip Stocks Powering the IPO Before It Launches. $30 stock to buy before Starlink goes public (WATCH NOW!) (Ad). MarketBeat Week in Review – 04/27 - 05/01. These 3 AI Stocks Just Crushed Earnings: Still Time To Buy? Gold Set an All-Time High. But BlackRock & JPMorgan Are Buyi"
-    },
-    {
-      "title": "Earnings Season Surges As Big Tech Delivers And 128 Reports Loom - Forbes",
-      "url": "https://www.forbes.com/sites/bill_stone/2026/05/03/earnings-season-surges-as-big-tech-delivers-and-128-reports-loom/",
-      "content": "Big Tech earnings are setting the tone for markets as 128 S&P 500 companies report this week. Following the busiest week of first-quarter earnings season last week, it’s the second busiest week with 128 S&P 500 companies scheduled to report. Companies reporting and combining actual results with cons"
     }
   ],
   "hot_themes": [
-    {
-      "title": "Stock market today: Nasdaq, S&P 500, Dow rally on rising hopes for Iran peace, upbeat tech earnings - Yahoo Finance",
-      "url": "https://finance.yahoo.com/markets/stocks/live/stock-market-today-nasdaq-sp-500-dow-rally-on-rising-hopes-for-iran-peace-upbeat-tech-earnings-231128444.html",
-      "content": "# Stock market today: Dow jumps 600 points, S&P 500 and Nasdaq hit records as AI trade fuels rally. Wall Street stocks climbed to fresh records on Wednesday as investors weighed reports that the US and Iran may be closing in on a peace deal, while solid earnings from tech companies fueled the artifi"
-    },
     {
       "title": "Stock market today: Dow jumps 600 points, S&P 500 and Nasdaq hit records as AI trade fuels rally - Yahoo Finance",
       "url": "https://finance.yahoo.com/markets/stocks/live/stock-market-today-dow-jumps-600-points-sp-500-and-nasdaq-hit-records-as-ai-trade-fuels-rally-231128214.html",
       "content": "# Stock market today: Dow jumps 600 points, S&P 500 and Nasdaq hit records as AI trade fuels rally. Wall Street stocks climbed to fresh records on Wednesday as investors weighed reports that the US and Iran may be closing in on a peace deal, while solid earnings from tech companies fueled the artifi"
     },
     {
-      "title": "Advantech Showcases AI-Driven Edge and Wafer Inspection Solutions at SEMICON SEA 2026 to Accelerate Semiconductor Innovation - The Manila Times",
-      "url": "https://www.manilatimes.net/2026/05/06/tmt-newswire/pr-newswire/advantech-showcases-ai-driven-edge-and-wafer-inspection-solutions-at-semicon-sea-2026-to-accelerate-semiconductor-innovation/2336809",
-      "content": "Advantech Showcases AI-Driven Edge and Wafer Inspection Solutions at SEMICON SEA 2026 to Accelerate Semiconductor Innovation. SINGAPORE, May 5, 2026 /PRNewswire/ -- Advantech, a leading global provider of intelligent systems and edge computing solutions, is excited to announce that it will participa"
+      "title": "Stock market today: Nasdaq, S&P 500, Dow rally on rising hopes for Iran peace, upbeat tech earnings - Yahoo Finance",
+      "url": "https://finance.yahoo.com/markets/stocks/live/stock-market-today-nasdaq-sp-500-dow-rally-on-rising-hopes-for-iran-peace-upbeat-tech-earnings-231128444.html",
+      "content": "# Stock market today: Dow jumps 600 points, S&P 500 and Nasdaq hit records as AI trade fuels rally. Wall Street stocks climbed to fresh records on Wednesday as investors weighed reports that the US and Iran may be closing in on a peace deal, while solid earnings from tech companies fueled the artifi"
     },
     {
-      "title": "PRISM MarketView Launches Emerging Semiconductors Index - markets.businessinsider.com",
-      "url": "https://markets.businessinsider.com/news/stocks/prism-marketview-launches-emerging-semiconductors-index-1036115221",
-      "content": "# PRISM MarketView Launches Emerging Semiconductors Index. NEW YORK, May 06, 2026 (GLOBE NEWSWIRE) -- PRISM MarketView today announced the launch of the PRISM Emerging Semiconductors Index, a thematic equity index tracking emerging semiconductor companies developing technologies across chip design, "
+      "title": "Taiwan Semiconductor Manufacturing (NYSE:TSM) Stock Price Down 1.8% - Should You Sell? - MarketBeat",
+      "url": "https://www.marketbeat.com/instant-alerts/taiwan-semiconductor-manufacturing-nysetsm-stock-price-down-18-should-you-sell-2026-05-05/",
+      "content": "*   10 Stocks Set to Soar in 2026 New. *   7 AI Stocks to Invest In New. *   7 Top Nuclear Stocks To Buy Now. *   10 Best AI Stocks to Own in 2026. *   Image 3: This ALWAYS Happens During an AI Boom (3 Stocks to Buy, 2 to Avoid)This ALWAYS Happens During an AI Boom (3 Stocks to Buy, 2 to Avoid). *  "
     },
     {
-      "title": "Biggest stock movers Tuesday: SHOP, PYPL, INTC, DUOL, and more - Seeking Alpha",
-      "url": "https://seekingalpha.com/news/4585380-biggest-stock-movers-tuesday-intc-duol-and-more",
-      "content": "Search for Symbols, analysts, keywords. # Biggest stock movers Tuesday: SHOP, PYPL, INTC, DUOL, and more. Stock futures edged higher on Tuesday as investors tracked renewed Middle East tensions while eyeing key economic data later this week. Here are some of Tuesday's biggest stock movers:. ## Bigge"
+      "title": "Taiwan Semiconductor Manufacturing Company Ltd. $TSM Stock Position Lowered by Alpha Cubed Investments LLC - MarketBeat",
+      "url": "https://www.marketbeat.com/instant-alerts/filing-taiwan-semiconductor-manufacturing-company-ltd-tsm-stock-position-lowered-by-alpha-cubed-investments-llc-2026-05-06/",
+      "content": "PH: Do THESE 4 things to your bank account now … (Ad)Image 1: tc pixel. Atomic Dividends: Big Tech's New Energy Bet. I’m sounding the alarm (Ad)Image 2: tc pixel. *   10 Stocks Set to Soar in 2026 New. *   7 AI Stocks to Invest In New. *   7 Top Nuclear Stocks To Buy Now. *   10 Best AI Stocks to Ow"
+    },
+    {
+      "title": "These Stocks Are Today’s Movers: AMD, Intel, Corning, Uber, Super Micro, Disney, Arista, DaVita, and More - Barron's",
+      "url": "https://www.barrons.com/articles/stock-movers-13dd52cb",
+      "content": "This copy is for your personal, non-commercial use only. Distribution and use of this material are governed by our Subscriber Agreement and by copyright law. For non-personal use or to order multiple copies, please contact Dow Jones Reprints at 1-800-843-0008 or visit www.djreprints.com. # These Sto"
     },
     {
       "title": "Biggest stock movers Wednesday: UBER, AMD, DIS, SMCI, and more (NASDAQ:LCID) - Seeking Alpha",
       "url": "https://seekingalpha.com/news/4586655-biggest-stock-movers-wednesday-amd-smci-and-more",
       "content": "# Biggest stock movers Wednesday: UBER, AMD, DIS, SMCI, and more. (LCID) Stock, AMD Stock, SMCI Stock, UPST Stock, FLEX Stock, SEDG Stock, DIS Stock, UBER StockBy: Niloofer Shaikh, SA News Editor. Stock futures edged up on Wednesday as hopes for cooling tensions between the U.S. and Iran improved in"
     }
-  ]
+  ],
+  "ai_summary": {
+    "master_briefing": "주간 급등 S&P500 종목은 QCOM, AMD, ORCL, INTC, NVDA, GE, DIS, TSLA, GOOGL, AAPL로 구성되었습니다. 글로벌 금융 뉴스에 따르면, 글로벌 부채가 353조 달러에 달하며, 미국에 대한 움직임이 감소하고 있습니다. 또한, 아시아에서는 AI 열풍이 계속되고 있습니다.",
+    "main_question": "AI 열풍이 주식 시장에 미치는 영향은 무엇인가요?",
+    "sub_questions": [
+      "AI 기술이 주식 시장에 미치는 영향은 어떤가요?",
+      "AI 열풍이 주식 시장에 미치는 긍정적인 영향은 무엇인가요?",
+      "AI 열풍이 주식 시장에 미치는 부정적인 영향은 무엇인가요?"
+    ]
+  }
 }

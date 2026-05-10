@@ -1,12 +1,13 @@
 import os
 import yfinance as yf
+import json
 from tavily import TavilyClient
 from dotenv import load_dotenv
 
 # LangChain & LangGraph 도구들
 from langchain_core.tools import tool
 from langgraph.prebuilt import create_react_agent
-from langchain_google_genai import ChatGoogleGenerativeAI
+from langchain_groq import ChatGroq
 
 # 환경변수 로드 (.env)
 load_dotenv()
@@ -47,23 +48,68 @@ def search_news(query: str) -> str:
     except Exception as e:
         return f"뉴스 검색 오류: {e}"
 
+
+@tool
+def read_local_daily_cache(category: str, ticker: str = None) -> str:
+    """
+    오늘 새벽에 수집된 로컬 캐시 데이터를 조회합니다.
+    category: "nasdaq100", "sector_etfs", "global_news" 중 하나.
+    ticker: 특정 종목을 찾을 때 입력 (예: "AAPL"). 없으면 전체 요약 반환.
+    """
+    with open("data/daily_cache.json", "r") as f:
+        data = json.load(f)
+    
+    if ticker and category == "nasdaq100":
+        # 100개 중 해당 종목 하나만 쏙 뽑아서 반환 (토큰 초절약)
+        for item in data.get("nasdaq100", []):
+            if item.get("ticker") == ticker:
+                return str(item)
+        return "종목 없음"
+    
+    # 뉴스의 경우 제목만 뽑아서 반환
+    if category == "global_news":
+        news_titles = [n['title'] for n in data.get('global_news', [])]
+        return "\n".join(news_titles)        
+
+
 # --- 2. 에이전트 두뇌(LLM)와 워크플로우 설정 ---
 
-# 무료 티어 한도가 넉넉하고 속도가 아주 빠른 최신 Flash 모델 사용 (Gemini 2.5 Flash)
-llm = ChatGoogleGenerativeAI(model="gemini-2.5-flash", temperature=0)
+# ⚠️ Tool Use에서는 반드시 temperature=0.1 이하 사용
+# temperature가 높으면 LLM이 함수 호출 포맷을 잘못 생성하여 Groq 400 에러 발생
+llm = ChatGroq(model="llama-3.3-70b-versatile", temperature=0.1)
 
 # 에이전트가 사용할 도구 목록
 tools = [get_stock_info, search_news]
 
-# 환각을 막기 위한 강력한 시스템 프롬프트 (족쇄)
-system_prompt = """
-당신은 최고의 금융 분석 에이전트입니다.
-사용자의 질문에 대해 반드시 제공된 도구(get_stock_info, search_news)를 사용하여 최신 데이터를 확인한 뒤 답변하세요.
-절대 당신의 사전 지식을 기반으로 소설을 쓰거나 지어내지 마세요. 데이터가 없으면 '정보가 없습니다'라고 답하세요.
-답변의 마지막에는 사용자가 더 궁금해할 만한 '후속 질문(Follow-up Query)' 3가지를 추천해 주세요.
-"""
+system_prompt = """당신은 월스트리트의 상위 1% 수석 퀀트 애널리스트입니다.
+주어진 도구를 사용하여 데이터를 검색하고 가장 직관적이고 타격감 있는 통찰을 제공해야 합니다.
 
-# LangGraph를 이용해 도구와 LLM을 결합한 에이전트 생성 (버전 호환성을 위해 추가 인자 제거)
+[작성 및 톤 가이드]
+1. 기계적인 나열("A는 B입니다. A는 C입니다.")을 절대 금지합니다.
+2. 데이터를 단순 전달하지 말고 "그래서 이 수치가 시장에 무슨 의미인가?(So What?)"를 반드시 해석하여 추가하십시오.
+3. 전문가가 VIP 고객에게 브리핑하듯 단호하고 확신 있는 어조를 사용하되, 짧고 간결하게 끊어 쓰십시오. (개조식과 서술형을 적절히 혼용)
+4. 사용자의 기존 관심 종목이나 투자 성향 정보가 주어졌다면 답변에 그 맥락을 자연스럽게 녹여내십시오. 
+5. 도입/접속 어구 뒤, 문장 연결을 위해서 쉼표를 사용하지 마십시오. 
+
+[필수 출력 구조]
+반드시 아래의 마크다운 포맷을 그대로 사용하여 답변을 출력하십시오.
+
+### 📊 마켓 인사이트
+(여기에 시장의 현재 상황을 관통하는 가장 핵심적인 한 줄 요약을 작성하세요.)
+
+### 🔍 심층 분석
+- **주요 동인**: (검색된 핵심 팩트, 기업명, 구체적인 수치)
+- **시장 임팩트**: (이 이슈가 관련 섹터나 거시경제에 미치는 파급력)
+- **투자 시사점**: (사용자 질문에 대한 최종적인 결론 및 전망)
+
+후속 질문:
+1. (사용자가 더 깊이 파고들 만한 전문적 추천 질문 1)
+2. (위 1번과 겹치지 않는 새로운 관점의 추천 질문 2)
+3. (위 1, 2번과 겹치지 않는 새로운 관점의 추천 질문 3)"""
+
+
+# LangGraph ReAct 에이전트 생성
+# 버전 호환성을 위해 system_prompt는 app.py에서 메시지 리스트의 첫 번째 항목으로 주입합니다.
 agent_executor = create_react_agent(llm, tools)
 
 # --- 3. 실행 및 테스트 함수 ---

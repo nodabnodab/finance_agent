@@ -25,6 +25,7 @@ import datetime
 import yfinance as yf
 from tavily import TavilyClient
 from dotenv import load_dotenv
+from langchain_groq import ChatGroq
 
 load_dotenv()
 
@@ -33,8 +34,11 @@ DATA_DIR = os.path.join(os.path.dirname(__file__), "data")
 os.makedirs(DATA_DIR, exist_ok=True)
 CACHE_PATH = os.path.join(DATA_DIR, "daily_cache.json")
 
-# ── Tavily 클라이언트 ──
+# ── API 클라이언트 설정 ──
 tavily = TavilyClient(api_key=os.getenv("TAVILY_API_KEY"))
+
+# Groq는 환경변수(GROQ_API_KEY)를 자동으로 인식하므로 
+# 별도의 전역 설정 코드가 필요하지 않습니다.
 
 
 # ────────────────────────────────────────────
@@ -235,6 +239,67 @@ def collect_hot_themes():
 
 
 # ────────────────────────────────────────────
+# 9. LLM 기반 오늘의 맞춤형 질문 자동 생성
+# ────────────────────────────────────────────
+def generate_daily_ai_summary(cache_data):
+    print("  [9/9] 수집된 데이터를 바탕으로 Groq LLM이 마스터 브리핑과 질문을 동시 생성 중입니다...")
+    
+    default_q = {
+        "master_briefing": "현재 시장 브리핑 데이터가 업데이트되지 않았습니다. 실시간 검색을 활용해주세요.",
+        "main_question": "시장이 닫힌 후, 오늘의 주요 기술주 흐름은 어떠한가요?",
+        "sub_questions": ["최근 나스닥 등락 원인", "금리 인하 수혜주", "지금 핫한 테마"]
+    }
+    
+    # 환경변수에서 Groq API 키 확인
+    groq_api_key = os.getenv("GROQ_API_KEY")
+    if not groq_api_key:
+        print("  ❌ GROQ_API_KEY가 설정되지 않았습니다.")
+        return default_q
+        
+    try:
+        # agent.py와 동일하게 빠르고 넉넉한 Llama 3.1 모델을 호출합니다.
+        llm = ChatGroq(model="llama-3.1-8b-instant", temperature=0.3)
+        
+        sp500_tickers = [x.get('ticker') for x in cache_data.get('sp500_weekly_top', [])][:10]
+        hot_themes = [x.get('title') for x in cache_data.get('hot_themes', [])][:5]
+        global_news = [x.get('title') for x in cache_data.get('global_news', [])][:3]
+        
+        prompt = f"""
+        당신은 예리한 통찰력을 가진 월스트리트 수석 애널리스트입니다. 
+        아래는 오늘 아침 수집된 시장 데이터의 핵심 키워드들입니다.
+        
+        - 주간 급등 S&P500 종목: {sp500_tickers}
+        - 핫한 테마 뉴스: {hot_themes}
+        - 글로벌 금융 뉴스: {global_news}
+        
+        이 데이터를 바탕으로 두 가지 임무를 한 번에 수행하세요.
+        
+        임무 1: 에이전트가 백그라운드 지식으로 사용할 3~4문장 분량의 밀도 높은 '마스터 브리핑' 작성. (수치, 거시경제 트렌드 위주로 매우 건조하게)
+        임무 2: 개인 투자자가 가장 클릭하고 싶어할 만한 날카로운 '메인 질문' 1개와, 가볍게 누르기 좋은 '서브 질문' 3개 작성. 
+        임무 3: 시장 중요도가 높은 기업들 중 오늘 실적 발표가 있는 기업이 있었다면, 그것에 대한 질문 1개, 저번 주 상승폭이 가장 컸던 주식 10개 중 하나를 골라 질문 1개를 포함하고 서브 질문을 만들어라.
+        
+        [매우 중요한 지시사항]
+        - 마스터 브리핑 내용, 메인 질문, 3개의 서브 질문은 **반드시 서로 다른 주제와 내용**이어야 합니다. 
+        - 절대 똑같은 문장을 반복하지 마세요. (중복 출력 시 시스템 오류 발생)
+
+        반드시 아래 JSON 포맷으로만 응답해야 합니다. 마크다운(`) 등은 절대 포함하지 마세요.
+        {{
+            "master_briefing": "마스터 브리핑 내용",
+            "main_question": "메인 질문 내용",
+            "sub_questions": ["서브질문1", "서브질문2", "서브질문3"]
+        }}
+        """
+        
+        # Groq LLM에 프롬프트 전송 및 답변 받기
+        response = llm.invoke(prompt)
+        text = response.content.replace("```json", "").replace("```", "").strip()
+        data = json.loads(text)
+        return data
+    except Exception as e:
+        print(f"  ❌ Groq AI 요약 생성 실패 (기본값 사용): {e}")
+        return default_q
+
+# ────────────────────────────────────────────
 # 메인 실행
 # ────────────────────────────────────────────
 def run_daily_fetch():
@@ -255,6 +320,9 @@ def run_daily_fetch():
         "earnings_calendar": collect_earnings_calendar(),
         "hot_themes":        collect_hot_themes(),
     }
+    
+    # 캐시 데이터를 기반으로 LLM 동적 질문 생성 추가
+    cache["ai_summary"] = generate_daily_ai_summary(cache)
 
     with open(CACHE_PATH, "w", encoding="utf-8") as f:
         json.dump(cache, f, ensure_ascii=False, indent=2)

@@ -486,38 +486,42 @@ with col_center:
                     st.info("데이터를 분석 중입니다...")
 
             try:
-                # 1. 마스터 브리핑 불러오기 (캐시 파일에서 읽기)
+                # 1. 마스터 브리핑 불러오기
                 master_briefing = ""
                 if os.path.exists(CACHE_PATH):
                     with open(CACHE_PATH, "r", encoding="utf-8") as f:
                         cache_data = json.load(f)
                         master_briefing = cache_data.get("ai_summary", {}).get("master_briefing", "")
 
-                # 2. LLM에게 보낼 최종 메시지 배열 생성
-                # 첫 번째 메시지로 system_prompt 주입
+                # 2. 사용자 프로필 문자열화
+                profile_str = json.dumps(st.session_state.user_profile, ensure_ascii=False)
+
+                # 3. LLM에게 보낼 최종 메시지 배열 생성
                 llm_messages = [("system", system_prompt)]
 
-                # 3. 슬라이딩 윈도우: 전체 대화 기록에서 최근 5개만 잘라내기
+                # 4. 슬라이딩 윈도우: 최근 5개 대화 가져오기
                 recent_memory = st.session_state.messages[-5:]
                 for msg in recent_memory:
                     llm_messages.append((msg["role"], msg["content"]))
 
-                # 마스터 브리핑이 있다면, 마지막 user 메시지 앞에 컨텍스트로 prepend
-                # (system 레벨이 아닌 user 컨텍스트로 넣어야 포맷 충돌 없이 안전함)
-                if master_briefing and llm_messages:
+                # 💡 핵심: 마지막 user 메시지(방금 한 질문)에 백그라운드 데이터(브리핑 + 프로필)를 몰래 덧붙임
+                if llm_messages:
                     last_role, last_content = llm_messages[-1]
                     if last_role == "user":
-                        llm_messages[-1] = (
-                            "user",
-                            f"[오늘의 시장 브리핑]\n{master_briefing}\n\n[사용자 질문]\n{last_content}"
-                        )
+                        enriched_prompt = f"""[참고용 백그라운드 데이터]
+- 오늘의 시장 요약: {master_briefing}
+- 사용자 맞춤형 프로필: {profile_str}
 
-                # 4. 에이전트에게 메시지 전송 및 실행
+[사용자 질문]
+{last_content}"""
+                        llm_messages[-1] = ("user", enriched_prompt)
+
+                # 5. 에이전트 실행
                 response = agent_executor.invoke({
                     "messages": llm_messages
                 })
 
-                # 5. 결과물 파싱 (Groq 등에서 리스트 형태로 올 경우를 대비한 처리)
+                # 6. 결과물 파싱
                 raw = response["messages"][-1].content
                 if isinstance(raw, list):
                     final_answer = "".join(

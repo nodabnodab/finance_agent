@@ -1,7 +1,7 @@
 import os
 import json
 import threading
-from langchain_groq import ChatGroq
+from langchain_ollama import ChatOllama
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -35,8 +35,8 @@ def _extract_and_update_worker(chat_history):
     안정성 최우선: 어떤 에러가 발생해도 조용히 종료됩니다.
     """
     try:
-        # LLM 초기화 (빠르고 저렴한 모델)
-        llm = ChatGroq(model="llama-3.1-8b-instant", temperature=0.0)
+        # LLM 초기화 (로컬 GPU 구동)
+        llm = ChatOllama(model="llama3.1", temperature=0.0)
         
         # 대화 내용을 하나의 텍스트로 합치기
         chat_text = ""

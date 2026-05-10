@@ -3,6 +3,7 @@ import requests
 from streamlit_lottie import st_lottie
 from agent import agent_executor, system_prompt
 from memory import trigger_background_compression, load_entity_memory
+from router import analyze_intent
 
 # ────────────────────────────────────────────
 # 1. 페이지 기본 설정
@@ -350,13 +351,13 @@ left_stocks = [
 
 
 import json
-from langchain_groq import ChatGroq
+from langchain_ollama import ChatOllama
 
 def update_user_profile_in_background(recent_chats, current_profile):
     """최근 3번의 대화를 분석해 사용자의 프로필을 JSON으로 업데이트합니다."""
     try:
-        # 가볍고 빠른 모델 호출
-        profiler_llm = ChatGroq(model="llama-3.1-8b-instant", temperature=0)
+        # 가볍고 빠른 모델 호출 (로컬 GPU 구동)
+        profiler_llm = ChatOllama(model="llama3.1", temperature=0)
         
         # 최근 대화를 텍스트로 묶기
         chat_text = "\n".join([f"{msg['role']}: {msg['content']}" for msg in recent_chats])
@@ -489,33 +490,43 @@ with col_center:
                     st.info("데이터를 분석 중입니다...")
 
             try:
-                # 1. 마스터 브리핑 불러오기
-                master_briefing = ""
-                if os.path.exists(CACHE_PATH):
-                    with open(CACHE_PATH, "r", encoding="utf-8") as f:
-                        cache_data = json.load(f)
-                        master_briefing = cache_data.get("ai_summary", {}).get("master_briefing", "")
+                # 🚦 1. 라우터(수문장) 검사: 가벼운 잡담인지 하드한 질문인지 분류
+                route_result = analyze_intent(prompt, st.session_state.messages)
+                
+                if route_result["intent"] == "chat":
+                    # 단순 잡담이면 메인 에이전트를 깨우지 않고 바로 답변
+                    final_answer = route_result["chat_response"]
+                    
+                else:
+                    # 'financial' 이면 기존의 무거운 로직(70B 모델 + 도구 + 프로필) 실행
+                    
+                    # 1. 마스터 브리핑 불러오기
+                    master_briefing = ""
+                    if os.path.exists(CACHE_PATH):
+                        with open(CACHE_PATH, "r", encoding="utf-8") as f:
+                            cache_data = json.load(f)
+                            master_briefing = cache_data.get("ai_summary", {}).get("master_briefing", "")
 
-                # 2. 사용자 프로필 문자열화 및 Entity Memory 로드
-                profile_str = json.dumps(st.session_state.user_profile, ensure_ascii=False)
-                entity_memory = load_entity_memory()
-                facts_str = "\n".join([f"- {f}" for f in entity_memory.get("facts", [])])
-                if not facts_str:
-                    facts_str = "- 아직 추출된 개별 팩트가 없습니다."
+                    # 2. 사용자 프로필 문자열화 및 Entity Memory 로드
+                    profile_str = json.dumps(st.session_state.user_profile, ensure_ascii=False)
+                    entity_memory = load_entity_memory()
+                    facts_str = "\n".join([f"- {f}" for f in entity_memory.get("facts", [])])
+                    if not facts_str:
+                        facts_str = "- 아직 추출된 개별 팩트가 없습니다."
 
-                # 3. LLM에게 보낼 최종 메시지 배열 생성
-                llm_messages = [("system", system_prompt)]
+                    # 3. LLM에게 보낼 최종 메시지 배열 생성
+                    llm_messages = [("system", system_prompt)]
 
-                # 4. 슬라이딩 윈도우: 최근 5턴(10개 메시지) 가져오기
-                recent_memory = st.session_state.messages[-10:]
-                for msg in recent_memory:
-                    llm_messages.append((msg["role"], msg["content"]))
+                    # 4. 슬라이딩 윈도우: 최근 5턴(10개 메시지) 가져오기
+                    recent_memory = st.session_state.messages[-10:]
+                    for msg in recent_memory:
+                        llm_messages.append((msg["role"], msg["content"]))
 
-                # 💡 핵심: 마지막 user 메시지(방금 한 질문)에 백그라운드 데이터(브리핑 + 프로필 + 팩트)를 몰래 덧붙임
-                if llm_messages:
-                    last_role, last_content = llm_messages[-1]
-                    if last_role == "user":
-                        enriched_prompt = f"""[참고용 백그라운드 데이터]
+                    # 💡 핵심: 마지막 user 메시지(방금 한 질문)에 백그라운드 데이터(브리핑 + 프로필 + 팩트)를 몰래 덧붙임
+                    if llm_messages:
+                        last_role, last_content = llm_messages[-1]
+                        if last_role == "user":
+                            enriched_prompt = f"""[참고용 백그라운드 데이터]
 - 오늘의 시장 요약: {master_briefing}
 - 사용자 맞춤형 프로필: {profile_str}
 
@@ -524,22 +535,22 @@ with col_center:
 
 [사용자 질문]
 {last_content}"""
-                        llm_messages[-1] = ("user", enriched_prompt)
+                            llm_messages[-1] = ("user", enriched_prompt)
 
-                # 5. 에이전트 실행
-                response = agent_executor.invoke({
-                    "messages": llm_messages
-                })
+                    # 5. 메인 에이전트(70B) 실행
+                    response = agent_executor.invoke({
+                        "messages": llm_messages
+                    })
 
-                # 6. 결과물 파싱
-                raw = response["messages"][-1].content
-                if isinstance(raw, list):
-                    final_answer = "".join(
-                        p.get("text", "") for p in raw
-                        if isinstance(p, dict) and "text" in p
-                    )
-                else:
-                    final_answer = str(raw)
+                    # 6. 결과물 파싱
+                    raw = response["messages"][-1].content
+                    if isinstance(raw, list):
+                        final_answer = "".join(
+                            p.get("text", "") for p in raw
+                            if isinstance(p, dict) and "text" in p
+                        )
+                    else:
+                        final_answer = str(raw)
 
             except Exception as e:
                 final_answer = f"오류 발생: {e}"

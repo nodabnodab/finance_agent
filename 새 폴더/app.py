@@ -2,7 +2,6 @@ import streamlit as st
 import requests
 from streamlit_lottie import st_lottie
 from agent import agent_executor, system_prompt
-from memory import trigger_background_compression, load_entity_memory
 
 # ────────────────────────────────────────────
 # 1. 페이지 기본 설정
@@ -297,8 +296,6 @@ if "user_profile" not in st.session_state:
     st.session_state.user_profile = {"관심종목": [], "투자성향": "파악 중", "최근관심사": ""}
 if "turn_count" not in st.session_state:
     st.session_state.turn_count = 0
-if "compressed_turns" not in st.session_state:
-    st.session_state.compressed_turns = 0
 
 
 # ────────────────────────────────────────────
@@ -496,31 +493,24 @@ with col_center:
                         cache_data = json.load(f)
                         master_briefing = cache_data.get("ai_summary", {}).get("master_briefing", "")
 
-                # 2. 사용자 프로필 문자열화 및 Entity Memory 로드
+                # 2. 사용자 프로필 문자열화
                 profile_str = json.dumps(st.session_state.user_profile, ensure_ascii=False)
-                entity_memory = load_entity_memory()
-                facts_str = "\n".join([f"- {f}" for f in entity_memory.get("facts", [])])
-                if not facts_str:
-                    facts_str = "- 아직 추출된 개별 팩트가 없습니다."
 
                 # 3. LLM에게 보낼 최종 메시지 배열 생성
                 llm_messages = [("system", system_prompt)]
 
-                # 4. 슬라이딩 윈도우: 최근 5턴(10개 메시지) 가져오기
-                recent_memory = st.session_state.messages[-10:]
+                # 4. 슬라이딩 윈도우: 최근 5개 대화 가져오기
+                recent_memory = st.session_state.messages[-5:]
                 for msg in recent_memory:
                     llm_messages.append((msg["role"], msg["content"]))
 
-                # 💡 핵심: 마지막 user 메시지(방금 한 질문)에 백그라운드 데이터(브리핑 + 프로필 + 팩트)를 몰래 덧붙임
+                # 💡 핵심: 마지막 user 메시지(방금 한 질문)에 백그라운드 데이터(브리핑 + 프로필)를 몰래 덧붙임
                 if llm_messages:
                     last_role, last_content = llm_messages[-1]
                     if last_role == "user":
                         enriched_prompt = f"""[참고용 백그라운드 데이터]
 - 오늘의 시장 요약: {master_briefing}
 - 사용자 맞춤형 프로필: {profile_str}
-
-[사용자의 장기 기억 팩트]
-{facts_str}
 
 [사용자 질문]
 {last_content}"""
@@ -547,31 +537,14 @@ with col_center:
 
             anim_ph.empty()
 
-            # 💡 핵심 2: 롤링 압축(Rolling Compression) 트리거
+            # 💡 핵심 2: 대화가 1턴 끝났으므로 카운터를 올리고, 3턴마다 프로파일러를 백그라운드 실행
             st.session_state.turn_count += 1
             if st.session_state.turn_count >= 3:
-                # 화면 로딩에 방해되지 않도록 기존 프로필 최신화 진행
+                # 화면 로딩에 방해되지 않도록 프로필 최신화 진행
                 latest_chats = st.session_state.messages[-6:] # 질문답변 3세트
                 new_profile = update_user_profile_in_background(latest_chats, st.session_state.user_profile)
                 st.session_state.user_profile = new_profile
                 st.session_state.turn_count = 0 # 카운터 초기화
-
-            # 💡 핵심 3: 사용자가 제안한 '8턴 도달 시 3턴 압축' 로직
-            # 총 턴 수 = len(messages) // 2
-            total_turns = len(st.session_state.messages) // 2
-            uncompressed_turns = total_turns - st.session_state.compressed_turns
-
-            if uncompressed_turns >= 8:
-                # 가장 오래된 3턴(6개 메시지) 추출
-                start_idx = st.session_state.compressed_turns * 2
-                end_idx = start_idx + 6
-                chats_to_compress = st.session_state.messages[start_idx:end_idx]
-                
-                # 백그라운드 스레드로 압축 실행 (UI 멈춤 없음)
-                trigger_background_compression(chats_to_compress)
-                
-                # 압축 카운터 증가
-                st.session_state.compressed_turns += 3
 
             # 신규 답변: 후속질문 분리 렌더링 + toast 피드백
             main_text, q_list = parse_follow_up(final_answer)

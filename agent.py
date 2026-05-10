@@ -50,6 +50,52 @@ def search_news(query: str) -> str:
 
 
 @tool
+def get_financials(ticker: str) -> str:
+    """
+    특정 기업의 핵심 재무 지표(밸류에이션, 수익성, 성장성)를 반환합니다.
+    PER, PBR, EPS, 매출액, 영업이익률 등 기업 가치 평가에 필요한 데이터를 제공합니다.
+    심층적인 기업 분석이나 종목 비교 시 반드시 이 도구를 먼저 사용하십시오.
+    """
+    try:
+        stock = yf.Ticker(ticker)
+        info = stock.info
+
+        # 안전하게 값 추출 (None이면 'N/A' 처리)
+        def safe_get(key, fmt="{}", divisor=1):
+            val = info.get(key)
+            if val is None:
+                return "N/A"
+            try:
+                return fmt.format(val / divisor)
+            except Exception:
+                return str(val)
+
+        result = f"""
+[{ticker} 핵심 재무 지표]
+
+▶ 밸류에이션
+  - PER (주가수익비율):       {safe_get('trailingPE', '{:.1f}배')}
+  - Forward PER (예상 PER):   {safe_get('forwardPE', '{:.1f}배')}
+  - PBR (주가순자산비율):     {safe_get('priceToBook', '{:.1f}배')}
+  - EV/EBITDA:               {safe_get('enterpriseToEbitda', '{:.1f}배')}
+
+▶ 수익성
+  - EPS (주당순이익):         {safe_get('trailingEps', '${:.2f}')}
+  - 영업이익률:               {safe_get('operatingMargins', '{:.1%}')}
+  - 순이익률:                 {safe_get('profitMargins', '{:.1%}')}
+  - ROE (자기자본이익률):     {safe_get('returnOnEquity', '{:.1%}')}
+
+▶ 성장성 & 규모
+  - 연간 매출액:              {safe_get('totalRevenue', '${:.1f}B', 1_000_000_000)}
+  - 매출 성장률 (YoY):        {safe_get('revenueGrowth', '{:.1%}')}
+  - 시가총액:                 {safe_get('marketCap', '${:.1f}B', 1_000_000_000)}
+"""
+        return result.strip()
+    except Exception as e:
+        return f"재무 데이터 조회 오류: {e}"
+
+
+@tool
 def read_local_daily_cache(category: str, ticker: str = None) -> str:
     """
     오늘 새벽에 수집된 로컬 캐시 데이터를 조회합니다.
@@ -84,7 +130,7 @@ fallback_llm = ChatGroq(model="llama-3.1-8b-instant", temperature=0.4)
 llm = primary_llm # 백업 제거. 70B 단독 사용
 
 # 에이전트가 사용할 도구 목록
-tools = [get_stock_info, search_news]
+tools = [get_stock_info, search_news, get_financials]
 
 system_prompt = """당신은 월스트리트의 상위 1% 수석 퀀트 애널리스트입니다.
 주어진 도구를 사용하여 데이터를 검색하고 가장 직관적이고 타격감 있는 통찰을 제공해야 합니다.

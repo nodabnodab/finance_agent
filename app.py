@@ -306,7 +306,7 @@ DATA_DIR = os.path.join(os.path.dirname(__file__), "data")
 CACHE_PATH = os.path.join(DATA_DIR, "daily_cache.json")
 
 daily_main_q = "시장이 닫힌 후, 오늘의 주요 기술주 흐름은 어떠한가요?"
-right_bubbles = ["최근 나스닥 등락 원인", "금리 인하 수혜주", "지금 핫한 테마"]
+right_bubbles = ["최근 나스닥 등락 원인", "금리 인하 수혜주", "지금 핫한 테마", "오늘 주목할 특징주"]
 
 # 캐시 파일이 있으면 LLM이 생성한 'ai_summary' 데이터로 덮어씌움
 if os.path.exists(CACHE_PATH):
@@ -324,12 +324,12 @@ if os.path.exists(CACHE_PATH):
                     if q not in unique_subs and q != daily_main_q:
                         unique_subs.append(q)
                 
-                # 만약 중복을 다 지웠더니 3개가 안 된다면, 비상용 질문으로 채워 넣습니다.
-                fallback_qs = ["어제 장 마감 후 특징주는?", "이번 주 주요 경제 일정은?", "현재 시장 리스크 요인은?"]
-                while len(unique_subs) < 3:
+                # 만약 중복을 다 지웠더니 4개가 안 된다면, 비상용 질문으로 채워 넣습니다.
+                fallback_qs = ["어제 장 마감 후 특징주는?", "이번 주 주요 경제 일정은?", "현재 시장 리스크 요인은?", "앞으로 주목해야 할 테마는?"]
+                while len(unique_subs) < 4:
                     unique_subs.append(fallback_qs.pop(0))
                     
-                right_bubbles = unique_subs[:3]
+                right_bubbles = unique_subs[:4]
     except Exception as e:
         import streamlit as st
         st.sidebar.error(f"캐시 로드 실패: {e}")

@@ -268,8 +268,8 @@ st.markdown("""
 import re
 
 def parse_follow_up(text):
-    """답변 하단의 후속 질문 블록을 감지해 본문과 질문 리스트로 쪼갭니다."""
-    parts = re.split(r"후속\s*질문[:\s]*", text, flags=re.IGNORECASE)
+    """'후속 질문', '추천 질문', '관련 질문', '더 궁금한' 등 유사한 표현을 모두 찾아답변 하단의 후속 질문 블록을 감지해 본문과 질문 리스트로 쪼갭니다."""
+    parts = re.split(r"(후속\s*질문|추천\s*질문|관련\s*질문|더\s*궁금한)[:\s]*", text, flags=re.IGNORECASE)
     main_text = parts[0].strip()
     questions = []
     
@@ -277,12 +277,14 @@ def parse_follow_up(text):
     if not main_text:
         main_text = "현재 해당 질문에 대한 명확한 분석 데이터를 찾지 못했습니다. 아래 추천 질문을 눌러 다른 관점으로 탐색해 보세요."
 
-    if len(parts) > 1:
-        # 1. 2. 3. 혹은 - 로 시작하는 한 줄 질문 추출
-        q_matches = re.findall(r"\d+[\.\s\-]+([^\n]+)", parts[1])
+    if len(parts) > 2: # re.split에 캡처 그룹()을 쓰면 구분자 자체도 리스트에 포함되므로 인덱스 주의
+        main_text = parts[0].strip()
+        questions_part = parts[-1].strip()
+        q_matches = re.findall(r"\d+[\.\s\-]+([^\n]+)", questions_part)
         questions = [q.strip() for q in q_matches if q.strip()]
+        return main_text, questions
         
-    return main_text, questions
+    return text.strip(), []
 
 if "messages" not in st.session_state:
     st.session_state.messages = []

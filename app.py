@@ -422,6 +422,8 @@ with col_right:
             if st.button(q, key=q):
                 st.session_state.trigger_query = q
 
+    
+
 # ── 중앙: 타이틀 + 챗봇 ──
 with col_center:
     st.markdown("<div class='title-text'>AI 금융 에이전트</div>", unsafe_allow_html=True)
